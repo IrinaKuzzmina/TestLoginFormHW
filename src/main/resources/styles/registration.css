@@ -1,0 +1,36 @@
+Label {
+    /*-fx-font-weight: bold;*/
+}
+
+#root {
+    -fx-background-color:  linear-gradient(gray,DimGrey );
+    -fx-padding: 20px 50px 50px 50px;
+}
+
+#hbox {
+    -fx-padding: 20px 20px 20px 30px;
+}
+
+#grid {
+    -fx-background-color:  linear-gradient(lightgray, gray);
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+    -fx-padding: 10px 10px 10px 10px;
+    -fx-background-radius: 20;
+    -fx-vgap: 5px;
+    -fx-hgap: 5px;
+}
+
+#text {
+    -fx-fill:  linear-gradient(orange , orangered);
+    -fx-font-family: "Courier New";
+    -fx-font-weight: Bold;
+    -fx-font-size: 28;
+    -fx-effect: dropshadow( three-pass-box , black , 0,0,5,5 );
+}
+
+#msgLbl {
+    -fx-font-color: orange;
+    -fx-font-weight: bold;
+    -fx-font-size: 14;
+}

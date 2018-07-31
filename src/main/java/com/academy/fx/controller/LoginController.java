@@ -5,10 +5,7 @@ import com.academy.fx.page.Page;
 import com.academy.fx.page.RegistrationPage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 public class LoginController {
     private String user = "root";

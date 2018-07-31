@@ -4,7 +4,7 @@ public class PasswordValidator implements Validator{
     private String msgError = "";
 
     @Override
-    public boolean validate(String password) {
+    public boolean validate(String fieldName, String password) {
         if (password == null || password.isEmpty()) {
             msgError = "Empty password";
             return false;

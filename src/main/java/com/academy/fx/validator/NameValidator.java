@@ -4,9 +4,9 @@ public class NameValidator implements Validator {
     private String msgError = "";
 
     @Override
-    public boolean validate(String value) {
+    public boolean validate(String fieldName, String value) {
         if (value == null || value.isEmpty()) {
-            msgError = "Empty name";
+            msgError = String.format("Empty field '%s'", fieldName);
             return false;
         }
 
