@@ -2,43 +2,57 @@ package com.academy.fx.controller;
 
 import com.academy.fx.page.Page;
 import com.academy.fx.page.RegistrationPage;
+import com.academy.fx.validator.EmailValidator;
+import com.academy.fx.validator.NameValidator;
 import com.academy.fx.validator.PasswordValidator;
+import com.academy.fx.validator.Validator;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class RegistrationController {
-    private PasswordValidator passwordValidator = new PasswordValidator();
+    private Validator nameValidator = new NameValidator();
+    private Validator passwordValidator = new PasswordValidator();
+    private Validator emailValidator = new EmailValidator();
 
     public EventHandler<? super MouseEvent> onClickRegisterButton(RegistrationPage registrationPage) {
         return event -> {
             System.out.println("Registration");
-           String firstName =  registrationPage.getFirstNameField().getText();
-           String lastName = registrationPage.getLastNameField().getText();
-           String email = registrationPage.getMailField().getText();
-           String password = registrationPage.getPasswordField().getText();
-           String confirmPassword =  registrationPage.getConfirmPasswordField().getText();
+            String firstName =  registrationPage.getFirstNameField().getText();
+            String lastName = registrationPage.getLastNameField().getText();
+            String email = registrationPage.getMailField().getText();
+            String password = registrationPage.getPasswordField().getText();
+            String confirmPassword =  registrationPage.getConfirmPasswordField().getText();
 
-//           if (!firstName.isEmpty())
-           if (passwordValidator.validate(password)){
-               if (password.equals(confirmPassword)) {
-                   registrationPage.getMessageLabel().setText("Congratulations!");
-               }
-           } else {
-               registrationPage.clearFields();
-               registrationPage.getMessageLabel().setText(passwordValidator.getMsgError());
-           }
-//            checkUser = userNameField.getText();
-//            checkPw = passwordField.getText();
-//            if (checkUser.equals(user) && checkPw.equals(pw)) {
-//                msgLabel.setText("Congratulations!");
-//                msgLabel.setTextFill(Color.GREEN);
-//            } else {
-//                msgLabel.setText("Incorrect user or pw.");
-//                msgLabel.setTextFill(Color.RED);
-//            }
-//            userNameField.setText("");
-//            passwordField.setText("");
+            if (!nameValidator.validate(firstName)) {
+                registrationPage.showError(nameValidator.getMsgError());
+                return;
+            }
+
+            if (!nameValidator.validate(lastName)) {
+                registrationPage.showError(nameValidator.getMsgError());
+                return;
+            }
+
+            if (!emailValidator.validate(email)) {
+                registrationPage.showError(emailValidator.getMsgError());
+                return;
+            }
+
+            if (!passwordValidator.validate(password)){
+                registrationPage.showError(passwordValidator.getMsgError());
+                registrationPage.clearPasswordFields();
+                return;
+            }
+
+            if (!password.equals(confirmPassword)) {
+                registrationPage.showError("Not equals passwords");
+                registrationPage.clearPasswordFields();
+                return;
+            }
+
+            registrationPage.clearFields();
+            registrationPage.showMessage("Congratulations!");
         };
     }
 }

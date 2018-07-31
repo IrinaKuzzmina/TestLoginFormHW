@@ -1,7 +1,9 @@
 package com.academy.fx.validator;
 
-public class PasswordValidator {
-    private String msgError;
+public class PasswordValidator implements Validator{
+    private String msgError = "";
+
+    @Override
     public boolean validate(String password) {
         if (password == null || password.isEmpty()) {
             msgError = "Empty password";
@@ -31,6 +33,7 @@ public class PasswordValidator {
         return true;
     }
 
+    @Override
     public String getMsgError() {
         return msgError;
     }
