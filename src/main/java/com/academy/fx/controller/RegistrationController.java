@@ -4,14 +4,10 @@ import com.academy.fx.validator.EmailValidator;
 import com.academy.fx.validator.NameValidator;
 import com.academy.fx.validator.PasswordValidator;
 import com.academy.fx.validator.Validator;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 public class RegistrationController {
     private Validator nameValidator = new NameValidator();
@@ -43,8 +39,6 @@ public class RegistrationController {
 
     @FXML
     private Label msgLbl;
-    @FXML
-    private Button registerBtn;
 
     @FXML
     public void onClickRegisterButton() {
@@ -95,11 +89,9 @@ public class RegistrationController {
 
     public void showError(String msg) {
         msgLbl.setText(msg);
-        msgLbl.setTextFill(Color.ORANGE);
     }
 
     public void showMessage(String msg) {
         msgLbl.setText(msg);
-        msgLbl.setTextFill(Color.GREEN);
     }
 }

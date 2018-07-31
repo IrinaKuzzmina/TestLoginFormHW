@@ -20,6 +20,11 @@ public class AccountPage implements Page {
     }
 
     @Override
+    public void hide() {
+        accountStage.hide();
+    }
+
+    @Override
     public void close() {
         accountStage.close();
     }

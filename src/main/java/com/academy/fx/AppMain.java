@@ -1,7 +1,7 @@
 package com.academy.fx;
 
+import com.academy.fx.page.LoginPage;
 import com.academy.fx.page.Page;
-import com.academy.fx.page.RegistrationPage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,8 +14,8 @@ public class AppMain extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Page registrationPage = new RegistrationPage();
-        registrationPage.init();
-        registrationPage.show();
+        Page loginPage = new LoginPage(primaryStage);
+        loginPage.init();
+        loginPage.show();
     }
 }

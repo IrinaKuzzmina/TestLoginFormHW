@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 
-<VBox>
-    <children>
-        <Label text="Hello world FXML"/>
-    </children>
-</VBox>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<BorderPane id="root" fx:controller="com.academy.fx.controller.LoginController"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/2.2" stylesheets="@../styles/common.css">
+    <top>
+        <HBox id="hbox" styleClass="top">
+            <Text id="text" styleClass="head">Log In</Text>
+        </HBox>
+    </top>
+
+    <center>
+        <GridPane id="grid" styleClass="form">
+            <!--TODO move to css-->
+            <effect>
+                <Reflection fraction="0.7f"/>
+            </effect>
+
+            <Label fx:id="mailLbl" text="E-mail:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="mailTxt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label fx:id="passwordLbl" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <PasswordField fx:id="passwordTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Button fx:id="loginBtn" styleClass="btn" text="Login" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#onClickLoginButton"/>
+
+            <Label fx:id="msgLbl" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"/>
+
+            <Button fx:id="registerBtn" styleClass="btn" text="Register" GridPane.columnIndex="0" GridPane.rowIndex="3" onAction="#onClickRegisterButton"/>
+
+        </GridPane>
+    </center>
+
+</BorderPane>

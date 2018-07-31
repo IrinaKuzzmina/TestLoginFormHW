@@ -6,12 +6,12 @@ public class PasswordValidator implements Validator{
     @Override
     public boolean validate(String fieldName, String password) {
         if (password == null || password.isEmpty()) {
-            msgError = "Empty password";
+            msgError = "Empty withPassword";
             return false;
         }
 
         if (password.length() < 8) {
-            msgError = "Short password";
+            msgError = "Short withPassword";
             return false;
         }
 
