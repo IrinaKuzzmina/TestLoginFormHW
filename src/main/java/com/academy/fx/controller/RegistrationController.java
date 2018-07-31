@@ -18,11 +18,11 @@ public class RegistrationController {
     public EventHandler<? super MouseEvent> onClickRegisterButton(RegistrationPage registrationPage) {
         return event -> {
             System.out.println("Registration");
-            String firstName =  registrationPage.getFirstNameField().getText();
-            String lastName = registrationPage.getLastNameField().getText();
-            String email = registrationPage.getMailField().getText();
-            String password = registrationPage.getPasswordField().getText();
-            String confirmPassword =  registrationPage.getConfirmPasswordField().getText();
+            String firstName =  registrationPage.getFirstName();
+            String lastName = registrationPage.getLastName();
+            String email = registrationPage.getMail();
+            String password = registrationPage.getPassword();
+            String confirmPassword =  registrationPage.getConfirmPassword();
 
             if (!nameValidator.validate(firstName)) {
                 registrationPage.showError(nameValidator.getMsgError());

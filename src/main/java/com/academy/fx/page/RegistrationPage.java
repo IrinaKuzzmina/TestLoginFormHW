@@ -48,52 +48,6 @@ public class RegistrationPage implements Page {
         registrationController = new RegistrationController();
     }
 
-    public Label getFirstNameLabel() {
-        return firstNameLabel;
-    }
-
-    public Label getLastNameLabel() {
-        return lastNameLabel;
-    }
-
-    public Label getMailLabel() {
-        return mailLabel;
-    }
-
-    public Label getPasswordLabel() {
-        return passwordLabel;
-    }
-
-    public Label getConfirmPasswordLabel() {
-        return confirmPasswordLabel;
-    }
-
-    public TextField getFirstNameField() {
-        return firstNameField;
-    }
-
-    public TextField getLastNameField() {
-        return lastNameField;
-    }
-
-    public TextField getMailField() {
-        return mailField;
-    }
-
-    public PasswordField getPasswordField() {
-        return passwordField;
-    }
-
-    public PasswordField getConfirmPasswordField() {
-        return confirmPasswordField;
-    }
-
-    public Label getMessageLabel() {
-        return messageLabel;
-    }
-
-
-
     @Override
     public void init() {
         StackPane secondaryLayout = new StackPane();
@@ -214,5 +168,25 @@ public class RegistrationPage implements Page {
     public void showMessage(String msg) {
         messageLabel.setText(msg);
         messageLabel.setTextFill(Color.GREEN);
+    }
+
+    public String getFirstName() {
+        return firstNameField.getText();
+    }
+
+    public String getLastName() {
+        return lastNameField.getText();
+    }
+
+    public String getMail() {
+        return mailField.getText();
+    }
+
+    public String getPassword() {
+        return passwordField.getText();
+    }
+
+    public String getConfirmPassword() {
+        return confirmPasswordField.getText();
     }
 }

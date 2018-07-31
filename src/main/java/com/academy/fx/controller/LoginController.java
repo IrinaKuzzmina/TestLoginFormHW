@@ -16,19 +16,17 @@ public class LoginController {
     private String checkUser, checkPw;
 
 
-    public EventHandler<ActionEvent> onClickLoginButton(TextField userNameField, TextField passwordField, Label msgLabel) {
+    public EventHandler<ActionEvent> onClickLoginButton(LoginPage loginPage) {
         return event -> {
-            checkUser = userNameField.getText();
-            checkPw = passwordField.getText();
+            checkUser = loginPage.getUserName();
+            checkPw = loginPage.getPassword();
             if (checkUser.equals(user) && checkPw.equals(pw)) {
-                msgLabel.setText("Congratulations!");
-                msgLabel.setTextFill(Color.GREEN);
+                loginPage.showMessage("Congratulations!");
             } else {
-                msgLabel.setText("Incorrect user or pw.");
-                msgLabel.setTextFill(Color.RED);
+                loginPage.showError("Incorrect user or pw.");
             }
-            userNameField.setText("");
-            passwordField.setText("");
+
+            loginPage.clearFields();
         };
     }
 

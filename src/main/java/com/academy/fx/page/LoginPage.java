@@ -12,6 +12,7 @@ import javafx.scene.effect.Reflection;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -111,7 +112,7 @@ public class LoginPage implements Page {
         text.setId("text");
         registerButton.setId("btnRegister");
 
-        loginButton.setOnAction(loginController.onClickLoginButton(userNameField, passwordField, messageLabel));
+        loginButton.setOnAction(loginController.onClickLoginButton(this));
         registerButton.setOnMouseClicked(loginController.onClickRegisterButton(this));
 
         //Add HBox and GridPane layout to BorderPane Layout
@@ -124,5 +125,28 @@ public class LoginPage implements Page {
         loginStage.setScene(scene);
 
         loginStage.setScene(scene);
+    }
+
+    public String getUserName() {
+        return userNameField.getText();
+    }
+
+    public String getPassword() {
+        return passwordField.getText();
+    }
+
+    public void showMessage(String msg) {
+        messageLabel.setText(msg);
+        messageLabel.setTextFill(Color.GREEN);
+    }
+
+    public void showError(String msg) {
+        messageLabel.setText(msg);
+        messageLabel.setTextFill(Color.RED);
+    }
+
+    public void clearFields() {
+        userNameField.setText("");
+        passwordField.setText("");
     }
 }
