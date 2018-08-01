@@ -4,6 +4,7 @@
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
+<?import com.sun.javafx.scene.control.skin.SplitPaneSkin.ContentDivider?>
 <BorderPane id="root" fx:controller="com.academy.fx.controller.LoginController"
             xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/2.2" stylesheets="@../styles/common.css">
@@ -14,25 +15,27 @@
     </top>
 
     <center>
-        <GridPane id="grid" styleClass="form">
-            <!--TODO move to css-->
-            <effect>
-                <Reflection fraction="0.7f"/>
-            </effect>
+        <VBox id="vbox"  styleClass="top">
+            <GridPane id="grid" styleClass="form">
+                <!--TODO move to css-->
+                <effect>
+                    <Reflection fraction="0.7f"/>
+                </effect>
 
-            <Label fx:id="mailLbl" text="E-mail:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="mailTxt" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Hyperlink fx:id="registerHl" styleClass="nav" text="Register" GridPane.columnIndex="0" GridPane.rowIndex="0"   GridPane.columnSpan="2" onAction="#onClickRegisterLink"/>
 
-            <Label fx:id="passwordLbl" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <PasswordField fx:id="passwordTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="mailLbl" text="E-mail:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="mailTxt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <Button fx:id="loginBtn" styleClass="btn" text="Login" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#onClickLoginButton"/>
+                <Label fx:id="passwordLbl" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <PasswordField fx:id="passwordTxt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-            <Label fx:id="msgLbl" styleClass="error" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"/>
+                <Button fx:id="loginBtn" styleClass="btn" text="Login" GridPane.columnIndex="0" GridPane.rowIndex="3" onAction="#onClickLoginButton"/>
 
-            <Button fx:id="registerBtn" styleClass="btn" text="Register" GridPane.columnIndex="0" GridPane.rowIndex="3" onAction="#onClickRegisterButton"/>
+                <Label fx:id="msgLbl" styleClass="error" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2"/>
 
-        </GridPane>
+            </GridPane>
+        </VBox>
     </center>
 
 </BorderPane>

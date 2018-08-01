@@ -6,6 +6,8 @@ public class PageFactory {
 
     private static LoginPage loginPage;
     private static RegistrationPage registrationPage;
+    private static AccountPage accountPage;
+    private static AdminPage adminPage;
 
     public static LoginPage getLoginPage(Stage primaryStage) {
         synchronized (LoginPage.class) {
@@ -36,4 +38,26 @@ public class PageFactory {
         }
         return registrationPage;
     }
+
+    public static AccountPage getAccountPage(String email) {
+        synchronized (AccountPage.class) {
+            if (accountPage == null) {
+                accountPage = new AccountPage(email);
+                accountPage.init();
+            }
+        }
+        return accountPage;
+    }
+
+    public static AdminPage getAdminPage() {
+        synchronized (AdminPage.class) {
+            if (adminPage == null) {
+                adminPage = new AdminPage();
+                adminPage.init();
+            }
+        }
+
+        return adminPage;
+    }
+
 }

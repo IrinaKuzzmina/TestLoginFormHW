@@ -67,4 +67,13 @@ public class User {
             return this;
         }
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", mail='" + mail + '\'' +
+                '}';
+    }
 }

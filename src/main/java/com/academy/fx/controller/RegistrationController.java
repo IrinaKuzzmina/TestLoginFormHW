@@ -1,6 +1,9 @@
 package com.academy.fx.controller;
 
 import com.academy.fx.model.RegistrationForm;
+import com.academy.fx.model.User;
+import com.academy.fx.page.PageFactory;
+import com.academy.fx.service.UserService;
 import com.academy.fx.validator.RegistrationValidator;
 import com.academy.fx.validator.Validator;
 import javafx.fxml.FXML;
@@ -37,6 +40,8 @@ public class RegistrationController {
     @FXML
     private Label msgLbl;
 
+    private UserService userService = UserService.getInstance();
+
     @FXML
     public void onClickRegisterButton() {
 
@@ -46,8 +51,29 @@ public class RegistrationController {
             return;
         }
 
+        User user = User.newUser()
+                .withFirstName(firstNameTxt.getText().trim())
+                .withLastName(lastNameTxt.getText().trim())
+                .withMail(mailTxt.getText().trim())
+                .withPassword(passwordTxt.getText().trim())
+                .build();
+
+        userService.save(user);
+
         clearFields();
-        showMessage("Congratulations!");
+        PageFactory.getRegistrationPage().hide();
+        PageFactory.getAdminPage().show();
+    }
+
+    public void onClickLoginLink() {
+        System.out.println("Click login link");
+        PageFactory.getRegistrationPage().hide();
+        PageFactory.getLoginPage().show();
+    }
+
+    public void onClickAdminLink() {
+        PageFactory.getRegistrationPage().hide();
+        PageFactory.getAdminPage().show();
     }
 
     private RegistrationForm prepareForm() {
@@ -73,10 +99,6 @@ public class RegistrationController {
     }
 
     private void showError(String msg) {
-        msgLbl.setText(msg);
-    }
-
-    private void showMessage(String msg) {
         msgLbl.setText(msg);
     }
 }

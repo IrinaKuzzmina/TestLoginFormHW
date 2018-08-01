@@ -15,6 +15,16 @@ public class UserData {
 
     private UserData() {
         this.users = new HashMap<>();
+        init();
+    }
+
+    private void init() {
+        save(User.newUser()
+            .withFirstName("test")
+            .withLastName("test")
+            .withMail("test@mail.com")
+            .withPassword("test")
+            .build());
     }
 
     public static UserData getInstance() {

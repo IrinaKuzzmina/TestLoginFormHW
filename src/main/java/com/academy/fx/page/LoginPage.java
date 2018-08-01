@@ -1,6 +1,5 @@
 package com.academy.fx.page;
 
-import com.academy.fx.controller.LoginController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -10,18 +9,13 @@ public class LoginPage implements Page {
     private static final String PAGE = "page/login.fxml";
 
     private Stage loginStage;
-    private LoginController loginController;
-
-    private Scene scene;
 
     public LoginPage() {
         this.loginStage = new Stage();
-        this.loginController = new LoginController();
     }
 
     public LoginPage(Stage loginStage) {
         this.loginStage = loginStage;
-        this.loginController = new LoginController();
     }
 
     @Override
@@ -45,7 +39,7 @@ public class LoginPage implements Page {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getClassLoader().getResource(PAGE));
             BorderPane rootLayout = loader.load();
-            Scene scene = new Scene(rootLayout, 400, 250);
+            Scene scene = new Scene(rootLayout, 400, 300);
 
             loginStage.setTitle("Login Form");
             loginStage.setScene(scene);

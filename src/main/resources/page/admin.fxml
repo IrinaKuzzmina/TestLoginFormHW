@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<BorderPane id="root" fx:controller="com.academy.fx.controller.AdminController"
+            xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/2.2" stylesheets="@../styles/common.css">
+    <top>
+        <HBox id="hbox" styleClass="top">
+            <Text id="text" styleClass="head">Account</Text>
+        </HBox>
+    </top>
+
+    <center>
+        <GridPane fx:id="grid" styleClass="form">
+            <!--TODO move to css-->
+            <effect>
+                <Reflection fraction="0.7f"/>
+            </effect>
+
+            <Hyperlink fx:id="registerHl" styleClass="nav" text="Register" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#onClickRegisterLink"/>
+            <Hyperlink fx:id="loginHl" styleClass="nav" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#onClickLoginLink"/>
+        </GridPane>
+    </center>
+
+</BorderPane>

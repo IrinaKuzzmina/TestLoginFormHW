@@ -1,22 +1,15 @@
 package com.academy.fx.controller;
 
 import com.academy.fx.model.AuthForm;
-import com.academy.fx.model.User;
 import com.academy.fx.page.PageFactory;
-import com.academy.fx.service.UserService;
 import com.academy.fx.validator.AuthValidator;
 import com.academy.fx.validator.Validator;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController {
-    private String user = "root";
-    private String pw = "root";
-    private String checkUser, checkPw;
-
     // view components
     @FXML
     private Label mailLbl;
@@ -27,18 +20,9 @@ public class LoginController {
     @FXML
     private PasswordField passwordTxt;
     @FXML
-    private Button loginBtn;
-    @FXML
     private Label msgLbl;
-    @FXML
-    private Button registerBtn;
 
-    private UserService userService;
     private Validator<AuthForm> authValidator = new AuthValidator();
-
-    public LoginController() {
-        userService = UserService.getInstance();
-    }
 
     @FXML
     public void onClickLoginButton() {
@@ -53,7 +37,7 @@ public class LoginController {
             showError(authValidator.getMsgError());
         } else {
             PageFactory.getLoginPage().hide();
-            PageFactory.getRegistrationPage().show();
+            PageFactory.getAccountPage(mailTxt.getText()).show();
         }
     }
 
@@ -67,14 +51,10 @@ public class LoginController {
     }
 
     @FXML
-    public void onClickRegisterButton() {
+    public void onClickRegisterLink() {
         System.out.println("click register");
 
         PageFactory.getLoginPage().hide();
         PageFactory.getRegistrationPage().show();
-    }
-
-    private boolean isValid(String mail, String password) {
-        return true;
     }
 }

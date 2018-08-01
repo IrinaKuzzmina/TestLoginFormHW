@@ -28,4 +28,8 @@ public class UserService {
     public User getByEmail(String email) {
         return userData.getByEmail(email);
     }
+
+    public void save(User user) {
+        userData.save(user);
+    }
 }
