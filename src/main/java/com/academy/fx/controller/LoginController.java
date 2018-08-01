@@ -1,5 +1,8 @@
 package com.academy.fx.controller;
 
+import com.academy.fx.model.User;
+import com.academy.fx.page.PageFactory;
+import com.academy.fx.service.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,28 +30,41 @@ public class LoginController {
     @FXML
     private Button registerBtn;
 
+    private UserService userService;
+
+    public LoginController() {
+        userService = UserService.getInstance();
+    }
 
     @FXML
     public void onClickLoginButton() {
         System.out.println("click login");
-//            checkUser = loginPage.getUserName();
-//            checkPw = loginPage.getPassword();
-//            if (checkUser.equals(user) && checkPw.equals(pw)) {
-//                loginPage.showMessage("Congratulations!");
-//            } else {
-//                loginPage.showError("Incorrect user or pw.");
-//            }
-//
-//            loginPage.clearFields();
+        String mail = mailTxt.getText();
+        String password = passwordTxt.getText();
+
+        if (mail == null || password == null || mail.isEmpty() || password.isEmpty() ||
+                !isValid(mail, password)) {
+
+        } else {
+            User user = userService.getByEmail(mail);
+            if (user == null) {
+
+            } else {
+                PageFactory.getLoginPage().hide();
+                PageFactory.getRegistrationPage().show();
+            }
+        }
     }
 
     @FXML
     public void onClickRegisterButton() {
         System.out.println("click register");
 
-//            Page registrationPage = new RegistrationPage();
-//            registrationPage.init();
-//            registrationPage.show();
-//            loginPage.close();
+        PageFactory.getLoginPage().hide();
+        PageFactory.getRegistrationPage().show();
+    }
+
+    private boolean isValid(String mail, String password) {
+        return true;
     }
 }

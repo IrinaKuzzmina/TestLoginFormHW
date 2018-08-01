@@ -1,17 +1,31 @@
 package com.academy.fx.service;
 
+import com.academy.fx.dao.UserData;
 import com.academy.fx.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
 
+    private UserData userData;
+    private static UserService instance;
+
+    private UserService() {
+        userData = UserData.getInstance();
+    }
+
+    public static synchronized UserService getInstance() {
+        if (instance == null) {
+            instance = new UserService();
+        }
+        return instance;
+    }
+
     public List<User> getAll() {
-        return new ArrayList<>();
+        return userData.getAll();
     }
 
     public User getByEmail(String email) {
-        return null;
+        return userData.getByEmail(email);
     }
 }

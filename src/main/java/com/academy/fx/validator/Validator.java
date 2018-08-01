@@ -1,6 +1,6 @@
 package com.academy.fx.validator;
 
-public interface Validator {
-    boolean validate(String fieldName, String value);
+public interface Validator<T> {
+    boolean validate(T form);
     String getMsgError();
 }

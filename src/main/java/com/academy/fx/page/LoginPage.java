@@ -14,6 +14,11 @@ public class LoginPage implements Page {
 
     private Scene scene;
 
+    public LoginPage() {
+        this.loginStage = new Stage();
+        this.loginController = new LoginController();
+    }
+
     public LoginPage(Stage loginStage) {
         this.loginStage = loginStage;
         this.loginController = new LoginController();

@@ -1,8 +1,7 @@
 package com.academy.fx.controller;
 
-import com.academy.fx.validator.EmailValidator;
-import com.academy.fx.validator.NameValidator;
-import com.academy.fx.validator.PasswordValidator;
+import com.academy.fx.model.RegistrationForm;
+import com.academy.fx.validator.RegistrationValidator;
 import com.academy.fx.validator.Validator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,9 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class RegistrationController {
-    private Validator nameValidator = new NameValidator();
-    private Validator passwordValidator = new PasswordValidator();
-    private Validator emailValidator = new EmailValidator();
+    private Validator<RegistrationForm> formValidator = new RegistrationValidator();
 
     // view components
     @FXML
@@ -43,30 +40,9 @@ public class RegistrationController {
     @FXML
     public void onClickRegisterButton() {
 
-        if (!nameValidator.validate(firstNameLbl.getText().replace(":", ""), firstNameTxt.getText())) {
-            showError(nameValidator.getMsgError());
-            return;
-        }
-
-        if (!nameValidator.validate(lastNameLbl.getText().replace(":", ""), lastNameTxt.getText())) {
-            showError(nameValidator.getMsgError());
-            return;
-        }
-
-        if (!emailValidator.validate(mailLbl.getText().replace(":", ""), mailTxt.getText())) {
-            showError(emailValidator.getMsgError());
-            return;
-        }
-
-        if (!passwordValidator.validate(passwordLbl.getText().replace(":", ""), passwordTxt.getText())){
-            showError(passwordValidator.getMsgError());
+        if (!formValidator.validate(prepareForm())) {
             clearPasswordFields();
-            return;
-        }
-
-        if (!passwordTxt.getText().equals(confPasswordTxt.getText())) {
-            showError("Not equals passwords");
-            clearPasswordFields();
+            showError(formValidator.getMsgError());
             return;
         }
 
@@ -74,7 +50,16 @@ public class RegistrationController {
         showMessage("Congratulations!");
     }
 
-    public void clearFields() {
+    private RegistrationForm prepareForm() {
+        return new RegistrationForm()
+                .withFirstName(firstNameLbl.getText().replace(":", ""), firstNameTxt.getText())
+                .withLastName(lastNameLbl.getText().replace(":", ""), lastNameTxt.getText())
+                .withMail(mailLbl.getText().replace(":", ""), mailTxt.getText())
+                .withPassword(passwordLbl.getText().replace(":", ""), passwordTxt.getText())
+                .withConfirmPassword(confPasswordLbl.getText().replace(":", ""), confPasswordTxt.getText());
+    }
+
+    private void clearFields() {
         firstNameTxt.setText("");
         lastNameTxt.setText("");
         mailTxt.setText("");
@@ -82,16 +67,16 @@ public class RegistrationController {
         confPasswordTxt.setText("");
     }
 
-    public void clearPasswordFields() {
+    private void clearPasswordFields() {
         passwordTxt.setText("");
         confPasswordTxt.setText("");
     }
 
-    public void showError(String msg) {
+    private void showError(String msg) {
         msgLbl.setText(msg);
     }
 
-    public void showMessage(String msg) {
+    private void showMessage(String msg) {
         msgLbl.setText(msg);
     }
 }
