@@ -28,7 +28,7 @@
 
             <Button fx:id="loginBtn" styleClass="btn" text="Login" GridPane.columnIndex="2" GridPane.rowIndex="1" onAction="#onClickLoginButton"/>
 
-            <Label fx:id="msgLbl" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"/>
+            <Label fx:id="msgLbl" styleClass="error" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.columnSpan="2"/>
 
             <Button fx:id="registerBtn" styleClass="btn" text="Register" GridPane.columnIndex="0" GridPane.rowIndex="3" onAction="#onClickRegisterButton"/>
 

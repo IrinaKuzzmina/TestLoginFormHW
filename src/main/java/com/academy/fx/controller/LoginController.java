@@ -1,8 +1,11 @@
 package com.academy.fx.controller;
 
+import com.academy.fx.model.AuthForm;
 import com.academy.fx.model.User;
 import com.academy.fx.page.PageFactory;
 import com.academy.fx.service.UserService;
+import com.academy.fx.validator.AuthValidator;
+import com.academy.fx.validator.Validator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,6 +34,7 @@ public class LoginController {
     private Button registerBtn;
 
     private UserService userService;
+    private Validator<AuthForm> authValidator = new AuthValidator();
 
     public LoginController() {
         userService = UserService.getInstance();
@@ -39,21 +43,27 @@ public class LoginController {
     @FXML
     public void onClickLoginButton() {
         System.out.println("click login");
-        String mail = mailTxt.getText();
-        String password = passwordTxt.getText();
 
-        if (mail == null || password == null || mail.isEmpty() || password.isEmpty() ||
-                !isValid(mail, password)) {
+        AuthForm form = new AuthForm()
+                .withEmail(mailLbl.getText().replace(":", ""), mailTxt.getText())
+                .withPassword(passwordLbl.getText().replace(":", ""), passwordTxt.getText());
 
+        if (!authValidator.validate(form)) {
+            clearFields();
+            showError(authValidator.getMsgError());
         } else {
-            User user = userService.getByEmail(mail);
-            if (user == null) {
-
-            } else {
-                PageFactory.getLoginPage().hide();
-                PageFactory.getRegistrationPage().show();
-            }
+            PageFactory.getLoginPage().hide();
+            PageFactory.getRegistrationPage().show();
         }
+    }
+
+    private void showError(String msgError) {
+        msgLbl.setText(msgError);
+    }
+
+    private void clearFields() {
+        mailTxt.setText("");
+        passwordTxt.setText("");
     }
 
     @FXML
