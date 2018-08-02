@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class AdminPage implements Page {
 
-    private static final String PAGE = "page/admin.fxml";
+    private static final String PAGE = "ui/page/admin.fxml";
 
     private Stage adminStage;
     private AdminController adminController;

@@ -6,7 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class LoginPage implements Page {
-    private static final String PAGE = "page/login.fxml";
+    private static final String PAGE = "ui/page/login.fxml";
 
     private Stage loginStage;
 

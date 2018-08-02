@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class AccountPage implements Page {
 
-    private static final String PAGE = "page/account.fxml";
+    private static final String PAGE = "ui/page/account.fxml";
 
     private Stage accountStage;
     private String email;

@@ -1,13 +1,17 @@
 package com.academy.fx.validator;
 
 import com.academy.fx.model.RegistrationForm;
+import com.academy.fx.service.PropertyService;
 import com.academy.fx.service.UserService;
 
+import static com.academy.fx.service.ErrorKey.*;
+
 public class RegistrationValidator implements Validator<RegistrationForm> {
-    private static final String REGEX = "^[\\w]+[.]?[\\w]+@[\\w]+[.]?[\\w]+$";
+    private static final String EMAIL_REGEX = "^[\\w]+[.]?[\\w]+@[\\w]+[.]?[\\w]+$";
 
     private String errorMessage = "";
     private UserService userService = UserService.getInstance();
+    private PropertyService propService = PropertyService.getInstance();
 
     @Override
     public boolean validate(RegistrationForm form) {
@@ -39,7 +43,7 @@ public class RegistrationValidator implements Validator<RegistrationForm> {
 
     private boolean validateName(String fieldName, String firstName) {
         if (firstName == null || firstName.isEmpty()) {
-            errorMessage = String.format("Empty field '%s'", fieldName);
+            errorMessage = String.format(propService.getError(REG_FIELD_EMPTY), fieldName);
             return false;
         }
 
@@ -48,12 +52,12 @@ public class RegistrationValidator implements Validator<RegistrationForm> {
 
     private boolean validateMail(String fieldName, String mail) {
         if (mail == null || mail.isEmpty()) {
-            errorMessage = String.format("Empty '%s'", fieldName);
+            errorMessage = String.format(propService.getError(REG_FIELD_EMPTY), fieldName, fieldName);
             return false;
         }
 
-        if (!mail.matches(REGEX)) {
-            errorMessage = String.format("Not correct format of '%s'", fieldName);
+        if (!mail.matches(EMAIL_REGEX)) {
+            errorMessage = String.format(propService.getError(REG_EMAIL_FORMAT), mail, fieldName);
             return false;
         }
 
@@ -62,27 +66,27 @@ public class RegistrationValidator implements Validator<RegistrationForm> {
 
     private boolean validatePassword(String password) {
         if (password == null || password.isEmpty()) {
-            errorMessage = "Empty withPassword";
+            errorMessage = propService.getError(REG_PASSW_EMPTY);
             return false;
         }
 
         if (password.length() < 8) {
-            errorMessage = "Short withPassword";
+            errorMessage = propService.getError(REG_PASSW_SHORT);
             return false;
         }
 
         if (!password.matches(".*[\\d].*")) {
-            errorMessage = "Password must contain digit";
+            errorMessage = propService.getError(REG_PASSW_DIGIT);
             return false;
         }
 
         if (!password.matches(".*[A-Z].*")) {
-            errorMessage = "Password must contain upper symbols";
+            errorMessage = propService.getError(REG_PASSW_UPPER);
             return false;
         }
 
         if (!password.matches(".*[a-z].*")) {
-            errorMessage = "Password must contain lower symbols";
+            errorMessage = propService.getError(REG_PASSW_LOWER);
             return false;
         }
 
@@ -91,7 +95,7 @@ public class RegistrationValidator implements Validator<RegistrationForm> {
 
     private boolean validateEqualsPasswords(String password, String confirmPassword) {
         if (!password.equals(confirmPassword)) {
-            errorMessage = "Not equals passwords";
+            errorMessage = propService.getError(REG_PASSW_EQ);
             return false;
         }
 
@@ -100,7 +104,7 @@ public class RegistrationValidator implements Validator<RegistrationForm> {
 
     private boolean validateExistenceUser(String mail) {
         if (userService.getByEmail(mail) != null) {
-            errorMessage = "User with such email already exists";
+            errorMessage = propService.getError(REG_USER_EXISTS);
             return false;
         }
 
