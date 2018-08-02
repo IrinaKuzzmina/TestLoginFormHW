@@ -48,6 +48,13 @@ public class AdminController {
     }
 
     public void onHide() {
-        grid.getRowConstraints().remove(1, grid.getRowConstraints().size()+1);
+        int max = getCountGridRows();
+        grid.getChildren().removeIf(node -> GridPane.getRowIndex(node) >= 1 && GridPane.getRowIndex(node) <= max);
+    }
+
+    private int getCountGridRows() {
+        final int[] max = {0};
+        grid.getChildren().stream().filter(n->GridPane.getRowIndex(n) > max[0]).forEach(n-> max[0] = GridPane.getRowIndex(n));
+        return max[0];
     }
 }
