@@ -78,4 +78,7 @@ public class RegistrationForm {
     public String getConfirmPasswordValue() {
         return confirmPassword[INDEX_VALUE];
     }
+
+
+
 }
